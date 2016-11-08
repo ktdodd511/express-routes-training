@@ -22,6 +22,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // ROUTES
 // Root Route
+app.get('/', function (req, res) {
+  res.sendFile("views/index.html", {root: __dirname});
+})
+
+var num = 10;
+
+app.get('/guess-a-number', function (req, res) {
+  
+  var guess = req.query.guess;
+  var guess = parseInt(req.query.number);
+  console.log(guess);
+  if (guess === num) {
+    res.send('You nailed it!');
+  } else if (guess > num) {
+    res.send('Too high');
+  } else if (guess < num) {
+    res.send('Too low');
+  }
+
+})
 
 
 // Gallery View Route
